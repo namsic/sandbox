@@ -11,6 +11,7 @@ void do_something(memcached_st *ptr) {
         fprintf(stderr, "memcached_set() failed, reason(%d)=%s\n", rc, memcached_detail_error_message(ptr, rc));
         return;
     }
+    fprintf(stderr, "memcached_set(): %s\n", memcached_strerror(ptr, rc));
 
     // kv get
     size_t value_length;
@@ -21,6 +22,7 @@ void do_something(memcached_st *ptr) {
         fprintf(stderr, "memcached_get() failed, reason(%d)=%s\n", rc, memcached_detail_error_message(ptr, rc));
         return;
     }
+    fprintf(stderr, "memcached_get(): %s\n", memcached_strerror(ptr, rc));
     fprintf(stdout, "VALUE %d %d %s\n", flags, value_length, value);
     free(value);
 }
@@ -28,7 +30,7 @@ void do_something(memcached_st *ptr) {
 int main() {
     memcached_return_t rc;
     memcached_st *memc = memcached_create(NULL);
-    // memcached_set_sasl_auth_data(memc, "username", "password");
+    // memcached_set_sasl_auth_data(memc, "namsic", "1234");
 #ifdef ENABLE_ARCUS
     arcus_return_t a_rc = arcus_connect(memc, "127.0.0.1:2181", "test");
     if (memcached_failed(a_rc)) {

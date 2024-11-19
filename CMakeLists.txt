@@ -5,7 +5,8 @@ project(my_project
     VERSION 0.0.1
 )
 
-# set(CMAKE_INSTALL_RPATH /home/namsic/.local/lib)
+set(CMAKE_INSTALL_RPATH /home/namsic/.local/lib)
+set(CMAKE_BUILD_RPATH /home/namsic/.local/lib)
 
 option(ENABLE_ARCUS "Enable ARCUS API")
 
